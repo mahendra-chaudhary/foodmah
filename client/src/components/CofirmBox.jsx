@@ -1,4 +1,4 @@
-// import React from 'react'
+import React from 'react'
 import { IoClose } from "react-icons/io5";
 
 const CofirmBox = ({cancel,confirm,close}) => {

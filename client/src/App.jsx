@@ -2,18 +2,18 @@ import { Outlet, useLocation } from 'react-router-dom'
 import './App.css'
 import Header from './components/Header'
 import Footer from './components/Footer'
-// import  { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast';
 import { useEffect } from 'react';
 import fetchUserDetails from './utils/fetchUserDetails';
 import { setUserDetails } from './store/userSlice';
 import { setAllCategory,setAllSubCategory,setLoadingCategory } from './store/productSlice';
 import { useDispatch } from 'react-redux';
 import Axios from './utils/Axios';
-import SummaryApi from './commen/SummaryApi';
-// import { handleAddItemCart } from './store/cartProduct'
-// import GlobalProvider from './provider/GlobalProvider';
-// import { FaCartShopping } from "react-icons/fa6";
-// import CartMobileLink from './components/CartMobile';
+import SummaryApi from './common/SummaryApi';
+import { handleAddItemCart } from './store/cartProduct'
+import GlobalProvider from './provider/GlobalProvider';
+import { FaCartShopping } from "react-icons/fa6";
+import CartMobileLink from './components/CartMobile';
 
 function App() {
   const dispatch = useDispatch()
@@ -38,9 +38,8 @@ function App() {
         }
     } catch (error) {
         
-    }
-    finally{
-
+    }finally{
+      dispatch(setLoadingCategory(false))
     }
   }
 
@@ -55,9 +54,8 @@ function App() {
            dispatch(setAllSubCategory(responseData.data.sort((a, b) => a.name.localeCompare(b.name)))) 
         }
     } catch (error) {
-
-    } finally{
-
+        
+    }finally{
     }
   }
 
@@ -71,19 +69,19 @@ function App() {
   },[])
 
   return (
-    // <GlobalProvider> 
+    <GlobalProvider> 
       <Header/>
-      // <main className='min-h-[78vh]'>
-      //     <Outlet/>
-      // </main>
-      // <Footer/>
-      // <Toaster/>
-      // {
-      //   location.pathname !== '/checkout' && (
-      //     <CartMobileLink/>
-      //   )
-      // }
-    // </GlobalProvider>
+      <main className='min-h-[78vh]'>
+          <Outlet/>
+      </main>
+      <Footer/>
+      <Toaster/>
+      {
+        location.pathname !== '/checkout' && (
+          <CartMobileLink/>
+        )
+      }
+    </GlobalProvider>
   )
 }
 

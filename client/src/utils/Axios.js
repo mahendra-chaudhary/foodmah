@@ -1,5 +1,5 @@
 import axios from "axios";
-import SummaryApi , { baseURL } from "../commen/SummaryApi";
+import SummaryApi , { baseURL } from "../common/SummaryApi";
 
 const Axios = axios.create({
     baseURL : baseURL,
@@ -10,6 +10,7 @@ const Axios = axios.create({
 Axios.interceptors.request.use(
     async(config)=>{
         const accessToken = localStorage.getItem('accesstoken')
+
         if(accessToken){
             config.headers.Authorization = `Bearer ${accessToken}`
         }

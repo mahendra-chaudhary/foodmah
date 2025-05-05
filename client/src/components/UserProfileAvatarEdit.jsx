@@ -2,12 +2,12 @@ import React, { useState } from 'react'
 import { FaRegUserCircle } from 'react-icons/fa'
 import { useDispatch, useSelector } from 'react-redux'
 import Axios from '../utils/Axios'
-import SummaryApi from '../commen/SummaryApi'
+import SummaryApi from '../common/SummaryApi'
 import AxiosToastError from '../utils/AxiosToastError'
 import { updatedAvatar } from '../store/userSlice'
 import { IoClose } from "react-icons/io5";
 
-const UserProfileAvatarEdit = ({ close }) => {
+const UserProfileAvatarEdit = ({close}) => {
     const user = useSelector(state => state.user)
     const dispatch = useDispatch()
     const [loading,setLoading] = useState(false)
